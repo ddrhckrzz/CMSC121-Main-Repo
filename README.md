@@ -7,13 +7,10 @@ the entire LAMP stack.
 
 ## Guide
 
-If you wish to use this template run this command:
-
-(NOTE: have direnv installed in your NixOS system otherwise
-it won't work)
+If you wish to use this template, download .envrc and flake.nix
+then, in the same directory, run this command:
 
 ```bash
-nix flake new -t github:ddrhckrzz/CMSC121-Main-Repo <desired output path>
 direnv allow
 ```
 
