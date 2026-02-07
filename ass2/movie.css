@@ -1,0 +1,134 @@
+/* 
+Assignment 2
+Name: Andrei Ernest G. Martillo
+Section: CMSC 121 - P
+Description : To layout a rotten tomatoes like webpage using CSS Layouts like Grid and Flexbox. 
+*/
+body {
+    background-image: url("background.png");
+    background-repeat: repeat;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 8pt;
+    margin: 0;
+}
+
+.banner-img {
+    background-image: url("bannerbg.png");
+    background-repeat: repeat-x;
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    display: grid;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    font-family: Tahoma, Verdana, sans-serif;
+    text-shadow: 3px 3px #999999;
+    text-align: center;
+}
+
+.content {
+    display: grid;
+    grid-template-areas: 
+        "left right"
+        "footer footer";
+    width: 800px;
+    border: 4px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.content-left {
+    grid-area: left;
+    width: 550px;
+}
+
+.content-right {
+    background-color: #A2B964;
+    grid-area: right;
+    width: 250px;
+}
+
+.content-footer {
+    background-color: #A2B964;
+    grid-area: footer;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+}
+
+.rotten-img {
+    display: flex;
+    align-items: center;
+    background-image: url("rbg.png");
+    background-repeat: repeat-x;
+    font-size: 48pt;
+    font-weight: bold;
+    color: red;
+    height: 83px;
+}
+
+.review {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 47% 47%;
+    grid-template-rows: repeat(5, min-content);
+    column-gap: 2%;
+    row-gap: 20pt;
+    margin: 2%;
+}
+
+.review-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-box {
+    background-color: #E8DC9B;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.critic-info {
+    margin-top: 5px;
+    font-size: 10pt;
+}
+
+.review-publication {
+    font-style: italic;
+}
+
+.review img {
+    float: left;
+    margin: 5px;
+}
+
+dl {
+    padding: 0pt 10pt;
+    font-family: Arial, sans-serif;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 10pt;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer {
+    opacity: 0.5;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

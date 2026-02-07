@@ -19,6 +19,7 @@ if ($mysqli->connect_error) {
 echo "<hr>";
 echo "<h2>Table of Contents</h2><br>";
 echo "<a href='ass1/index.html'>Go to Assignment 1</a>";
+echo "<br><a href='ass2/tmnt.html'>Go to Assignment 2</a>";
 
 // 3. Show full PHP Info
 echo "<hr>";
