@@ -1,0 +1,48 @@
+/* CSE 190 M, Spring 2008, Lab 2, Journal
+   Solution file for journal CSS effects, exercise 4
+*/
+
+body {
+	background-image: url("background.gif");
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#container {
+	background-color: white;
+	/* added this exercise */
+	border: 10px white solid;
+}
+
+.date {
+	/* added this exercise */
+	border-bottom-style: dashed;
+	border-bottom-width: 2px;
+}
+
+.entry {
+	/* added this exercise */
+	border: 4px #C2E9E9 solid;
+	padding: 5px;
+	background-color: #E8FBFB;
+	margin-top: 10px;
+}
+
+.entry img {
+	float: right;
+}
+
+#header {
+	/* added this exercise */
+	background-color: #A8F0F0;
+	text-align: right;
+}
+
+#header h2 {
+	/* added this exercise */
+	font-size: 14pt;
+}
+
+.spacer {
+	clear: right;
+}

@@ -1,0 +1,57 @@
+#container {
+    border: 10px solid white;
+    background-color: white;
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "aside article"
+        "fill article";
+    gap: 10px;
+}
+
+#header {
+    background-color: #A8F0F0;
+    text-align: right;
+    grid-area: header;
+}
+
+#header h2 {
+    font-size: 14pt;
+}
+
+.section {
+    border: 4px solid #C2E9E9;
+    background-color: #E8FBFB;
+    padding: 5px;
+    margin: 10px 0 0 0;
+    overflow: hidden;
+}
+
+.date {
+    border-bottom: 2px dashed blue;
+}
+
+body {
+    background-image: url("images/background.gif");
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 8px 10%;
+}
+
+.section img {
+    float: right;
+}
+
+.article {
+    grid-area: article;
+}
+
+.aside {
+    grid-area: aside;
+    background-color: #A8F0F0;
+    padding: 5px;
+    border: 5px solid #009097;
+    margin-top: 10px
+}

@@ -1,0 +1,24 @@
+/* CSE 190 M, Spring 2008, Lab 2, Journal
+   Solution file for journal CSS effects, exercise 1
+*/
+
+
+#container {
+	border: 5px green solid;
+}
+
+.date {
+	border: 5px purple solid;
+}
+
+.entry {
+	border: 5px blue solid;
+}
+
+#header {
+	border: 5px red solid;
+}
+
+#header h2 {
+	border: 5px orange solid;
+}

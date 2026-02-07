@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+		<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+		<script type="text/javascript" src="../labs.js"></script>
+		
+		<style type="text/css">
+			#netterms {
+				line-height: 2em;
+			}
+			
+			#netterms li {
+				display: inline;
+				padding: 0.2em 0.5em;
+				border-left: thin dotted gray;
+				border-right: thin dotted gray;
+			}
+			
+			.sectionheader {
+				margin-top: 14em;
+			}
+		</style>
+
+		<style type="text/css" media="print">
+			h2 {
+				margin-top: 1em !important;
+				padding-top: 0em !important;
+			}
+		</style>
+
+		<title>CSMC 121 Internet Technologies Activity 3 (CSS Design and Layout)</title>
+	</head>
+
+	<body>
+		<h1>
+			CMSC 121 Internet Technologies <br />
+			Activity 3: CSS Design and Layout
+		</h1>
+		<h1>
+			From: <br />
+			Web Programming Step by Step <br />
+			<a href="https://www.webstepbook.com/supplements.shtml#labsection">Lab 2: CSS Design and Layout</a>
+		</h1>
+
+		<p class="credit">
+			original lab idea and code by Victoria Kirst; revised by Brian Le and Marty Stepp; recently revised by John Ultra
+		</p>
+		<p class="credit">
+		<b>Credits and Acknowledgements </b> This laboratory activity was taken from Companion Website for <cite>Web Programming
+		Step by Step</cite> by Marty Stepp, Jessica Miller, and Victoria Kirst. These materials are used in this
+		course for educational purposes only. If you are keen, the complete list of materials can be found in the following
+		URL: <a href="https://www.webstepbook.com/">https://www.webstepbook.com/</a>. The copyright to these materials
+		are owned by their respective owners. 
+		</p>
+		
+		<p>
+			The purpose of this lab is to practice writing Cascading Style Sheets to control the appearance and layout of a web page.
+		</p>
+
+		<h2>Activity 3 Resources</h2>
+
+		<ul>
+			<li>
+				<a class="popup" href="https://internetingishard.netlify.app/html-and-css/flexbox/">Flex Box Tutorial</a>
+			</li>
+			<li>
+				<a class="popup" href="https://internetingishard.netlify.app/html-and-css/floats/">Floats Tutorial</a>
+			</li>
+
+			<li>
+				
+						Use the <b> Developer Tools </b> that are built-in in modern web browsers in debugging your work. For more info, visit the following links:
+						<a href="https://developers.google.com/web/tools/chrome-devtools"> Google Chrome</a>, and
+						<a href="https://developer.mozilla.org/en-US/docs/Tools">Mozilla Firefox</a>.
+				
+			</li>
+			
+			<li>
+				<a href="https://www.webstepbook.com/supplements/labsection/lab2-journal/solution/journal_ex6.html">Solution</a> to this lab, so you can see how your page is supposed to look and work
+			</li>
+		</ul>
+
+
+		<h2>Victoria's Journal Web Page</h2>
+
+		<p>
+			You are given a file named <a href="journal.html"><code>journal.html</code></a> (right-click and select <q>Save Link As...</q>) that represents a page from Victoria's journal. You are to write a stylesheet called <code>journal_layout.css</code> that will transform the layout in different ways throughout the following exercises.
+		</p>
+		
+		<p>
+			To help you out, you are also given a file named <code>journal_basic.css</code> that defines some basic styles for this page, and it is already linked for you in the file already.<br/>
+			You do not have to edit this provided stylesheet or the link; just edit the <code>journal_layout.css</code> that you're writing.
+		</p>
+		
+		<h2>Exercises for Today:</h2>
+		
+		<ol>
+			<li><a href="#ex1">Arrange Your Page into Sections</a></li>
+			<li><a href="#ex2">Spacing With Padding and Margins, Backgrounds</a></li>
+			<li><a href="#ex3">Float, Alignment and Clear</a></li>
+			<li><a href="#ex4">Cosmetic Finishing Touches</a></li>
+			<li><a href="#ex5">Upload Your Page to the Web</a></li>
+			<li><a href="#ex6">Add 2nd Column: Friends List</a></li>
+			<li><a href="#ex7">Make Your Journal Annoying w/ Hover</a></li>
+		</ol>
+
+
+		<h2 id="ex1">Exercise 1: Arrange Your Page into Sections (roughly 20 minutes)</h2>
+		
+		<p>
+			The first task is to organize <code>journal.html</code> by adding <code>id</code>s, <code>class</code>es, <code>span</code>s and <code>div</code>s as seen in lecture. Then, add &quot;boxes&quot; around these sections of the website by adding to your <code>journal_layout.css</code> stylesheet.
+		</p>
+		
+		<p>
+			<em>Hint:</em> Remember the way to define a border in CSS: <br />
+			<code>border: <var>thickness</var> <var>color</var> <var>style</var>;</code></em>
+		</p>
+		
+		<p>
+			For example, the following gives a yellow, dashed, 1px-thick border:
+		</p>
+		
+		<pre>
+border: 1px yellow dashed;
+</pre>
+		
+		<p>
+			You are going to match the output below (between, but not including, the thick black lines).
+		</p>
+		
+		<ul>
+			<li>
+				The <strong>borders</strong> are all <code>5px</code> thick and <code>solid</code>.
+			</li>
+			<li>The <strong>colors</strong> are the intuitive HTML color names, e.g. the red border is the HTML color <code>red</code>.</li>
+			<li><em>Note:</em> You should not need define a class or id specifically for the <code>h2</code>s on this page. <br />
+			<em>Hint:</em> To reduce the amount of <code>id</code> and <code>class</code> attributes you need to set in the XHTML code, consider using CSS <strong>context selectors</strong> as appropriate.</li>
+		</ul>
+		
+
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output1.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+		
+		<p>
+			The only major changes you should need to make to the XHTML code are adding <code>id</code>s, <code>class</code>es, <code>div</code>s, and <code>span</code>s.  You may also change the text of the journal if you like, such as changing it to your name or rewording the journal entries.  But please don't spend a large amount of time doing this, so you can move on to the later exercises.
+		</p>
+		
+		
+	
+		<h2 id="ex2">Exercise 2: Spacing With Padding and Margins, Backgrounds (roughly 15 minutes)</h2>
+ 
+		<p>
+			You are now going to add padding, margins, and backgrounds to some of the parts you defined in Exercise 1. You should only have to change your <code>journal_layout.css</code> file, if you completed Exercise 1 correctly.
+		</p>
+		
+		<ul>
+			<li>
+				The box with the <strong>green</strong> border should have a background color of <code>white</code>.<br />
+			</li>
+			<li>
+				The boxes with the <strong>blue</strong> borders should have a background color of <code>#E8FBFB</code>.<br/>
+				It should have a padding of <code>5px</code> (on all sides) and margin of <code>10px</code> only on the <em>top</em> of the box (the margins for the remaining sides should be left at 0px).
+			</li>
+			<li>
+				The <strong>overall page content</strong> area should become centered on the page, should have left and right margins of <code>10%</code> and a background image using the following image: <br/>
+				<img src="images/background.gif" alt="spatula city background image" /> <br /> "Right click" and click "Save as ...".
+			</li>
+		</ul>
+
+		<p>
+			You are going to match the output below (between, but not including, the thick black lines).
+		</p>
+
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output2.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+		
+		
+		
+		<h2 id="ex3">Exercise 4: Layout using Flex/Grid</h2>
+ 
+		<p>
+			Now you're going to practice flex/grid layouts on the web page.  Part of this exercise is understanding modern layout mechanisms like FlexBox and Grid.  
+			
+		</p>
+		
+		<ul>
+			<li>
+				The heading text in the <strong>red</strong> box should appear on the <strong>right</strong> side of that section of the page.<br />
+			</li>
+			<li>
+				The journal entry images should hover on the <strong>right</strong> side next to the surrounding text. The image should stay within the bounds of the blue box; that is, it should not <q>bleed</q> into the other content below it.<br />
+			</li>
+		</ul>
+
+		<p>
+			You are going to match the output below (between, but not including, the thick black lines).
+		</p>
+
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output3.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+		
+		
+		<h2 id="ex4">Exercise 4: Cosmetic Finishing Touches (roughly 10 minutes)</h2>
+ 
+		<p>
+			Finally, we add some finishing touches to make the page look its best.
+		</p>
+		
+		<ul>
+			<li>
+				Change the border of the box with the <strong>green</strong> border to be a solid, white, 10px-thick border.<br />
+			</li>
+			<li>
+				Change the border of the boxes with the <strong>blue</strong> border to have a solid, 4px-thick border, using the hex value <code>#C2E9E9</code> for its color.<br />
+			</li>
+			<li>
+				Change the border of the box with the <strong>purple</strong> border to have <em>only</em> a bottom border, and let that bottom border be blue, dashed, and 2px-thick.<br />
+			</li>
+			<li>
+				Change the background color of the box with the <strong>red</strong> border to be <code>#A8F0F0</code> and get rid of its border altogether.<br />
+			</li>
+			<li>
+				Change the font size of <q>So fresh and so clean</q> to 14pt and get rid of its border.<br />
+			</li>
+		</ul>
+
+		<p>
+			You are going to match the output below (between, but not including, the thick black lines).
+		</p>
+
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output4.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+
+
+		<h2 id="ex6">Exercise 5: Add 2nd Column: Friends List</h2>
+				
+		<p>
+			Work on adding a second column to the layout. You should copy and paste the following code into your <code>journal.html</code>:
+		</p>
+		
+<pre><code>&lt;h1&gt;Friends&lt;/h1&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://www.willsmith.net/"&gt;Big Will&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://youtube.com/watch?v=mZHoHaAYHq8" title="Conan the Librarian"&gt;Conan the Librarian&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+		
+		<p>
+			Use the appropriate layout-related tags/attributes and CSS to make this list into a second, left-aligned column as shown below. The colors, borders, etc. of the list are not important; the focus is on the layout. 
+		
+		</p>
+
+		<p>
+			You are going to match the output below (between, but not including, the thick black lines).
+		</p>
+
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output5.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+
+
+
+		<h2 id="ex5">Exercise 6: Upload Your Page to your Web Server (roughly 5 minutes)</h2>
+		<p>
+			Upload your files to the ROOT directory of your Web Server under a folder called, <q>activity3</q>. Once you've done this, you can now view your page
+			in the browser at <pre>http://localhost/activity3/journal.html</pre>.
+		</p>
+
+		<h2>Exercise 7: What to submit?</h2>
+		
+		<p>
+			If you are done, submit your files as separate files in the submission bin for this activity in the LMS course site. 
+		</p>
+		
+		
+		<div class="w3c">
+			<a href="http://validator.w3.org/check/referer"><img src="../w3c-xhtml11.png" alt="Valid XHTML 1.1" /></a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="../w3c-css.png" alt="Valid CSS!" /></a>
+		</div>
+
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+		<script type="text/javascript">
+			var pageTracker = _gat._getTracker("UA-2729135-5");
+			pageTracker._initData();
+			pageTracker._trackPageview();
+		</script>
+	</body>
+</html>
+
