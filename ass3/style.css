@@ -1,0 +1,80 @@
+/*
+CMSC 121 Assignment 3
+Submitted By: Andrei Ernest G. Martillo
+Description: Recreate a website you frequently visit.
+*/
+
+body {
+    font-size: 14px;
+    font-family: "Verdana",Verdana, Arial;
+    margin: 0;
+}
+
+i {
+    width: 1em;
+    margin-right: 0.2em;
+    text-align: center;
+}
+
+#top {
+    color: white;
+    background-color: #333399;
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0.5em;
+    letter-spacing: 0.5px;
+}
+
+#top i {
+    margin-left: 10px;
+}
+
+#top a, #top a:hover, #top a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+#title-right a:hover {
+    text-decoration: underline;
+}
+
+#title-link {
+    font-size: 1.1em;
+}
+
+#title-left, .dropdown {
+    margin-left: 11%;
+}
+
+#title-right, .search-input {
+    margin-right: 11%;
+}
+
+#nav-header {
+    border-top: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+    background-color: #f6f7ee;
+    margin: 0;
+    margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    position: relative
+}
+
+.dropdown {
+    flex-grow: 1;
+    display: flex;
+    gap: 1.6em;
+    padding-top: 5px;
+}
+
+.dropdown a, .dropdown a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    text-decoration: underline;
+}

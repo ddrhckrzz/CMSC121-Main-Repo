@@ -1,0 +1,127 @@
+<!-- 
+CMSC 121 Assignment 3
+Submitted By: Andrei Ernest G. Martillo
+Description: Recreate a website you frequently visit.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="World's largest fanfiction archive and forum where fanfic writers and readers around the globe gather to share their passion.">
+    <title>Fanfiction</title>
+    <link rel="shortcut icon" href="images/ff-icon-192.png" type="image/x-icon">
+    <!-- This is for some of the icons that get used in this website page. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Actual CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="top">
+            <div id="title-left">
+                <a id="title-link" href="/">FanFiction</a>
+                 
+                <small>|</small>
+                 unleash your imagination
+                <i id="icon-mobile" class="fa fa-mobile-screen"></i>
+                <i class="fa fa-font"></i>
+            </div>
+            <div id="title-right">
+                <a href="login.php">
+                    <i id="icon-lock" class="fa fa-lock"></i>
+                    Login
+                </a>
+                 | 
+                <a href="signup.php">Sign Up</a>
+            </div>
+        </div>
+        <nav id="nav-header">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#">
+                    Browse
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <a class="dropdown-toggle" href="#">
+                    Just In
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <a class="dropdown-toggle" href="#">
+                    Community
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <a class="dropdown-toggle" href="#">
+                    Forum
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <a class="dropdown-toggle" href="#">
+                    Betas
+                    <i class="fa fa-caret-down"></i>
+                </a>
+            </div>
+            <div class="search-input">
+                <button>
+                    Story
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <input id="search_keyword" name="keywords" type="text" placeholder="Search" title="Search">
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <p>
+                <img src="images/script.png" alt="script icon">
+                Fanfiction
+            </p>
+            <ul>
+                <li><a href="anime/">Anime/Manga</a></li>
+                <li><a href="book/">Books</a></li>
+                <li><a href="cartoon/">Cartoons</a></li>
+                <li><a href="comic/">Comics</a></li>
+                <li><a href="game/">Games</a></li>
+                <li><a href="misc/">Misc</a></li>
+                <li><a href="movie/">Movies</a></li>
+                <li><a href="play/">Plays</a></li>
+                <li><a href="tv/">TV</a></li>
+            </ul>
+        </section>
+        <section>
+            <p>
+                <i id="icon-shuffle" class="fa fa-shuffle"></i>
+                Crossover
+            </p>
+            <ul>
+                <li><a href="crossovers/anime/">Anime/Manga</a></li>
+                <li><a href="crossovers/book/">Books</a></li>
+                <li><a href="crossovers/cartoon/">Cartoons</a></li>
+                <li><a href="crossovers/comic/">Comics</a></li>
+                <li><a href="crossovers/game/">Games</a></li>
+                <li><a href="crossovers/misc/">Misc</a></li>
+                <li><a href="crossovers/movie/">Movies</a></li>
+                <li><a href="crossovers/play/">Plays</a></li>
+                <li><a href="crossovers/tv/">TV</a></li>
+            </ul>
+        </section>
+        <aside>
+            <a href="https://twitter.com/FictionPress?ref_src=twsrc%5Etfw">Tweets by FictionPress</a>
+        </aside>
+    </main>
+    <footer>
+        <nav id="nav-footer">
+            <a href="support/">Help</a>
+             . 
+            <a href="cookies/">Cookies</a>
+             . 
+            <a href="privacy/">Privacy</a>
+             . 
+            <a href="tos/">Terms of Service</a>
+             . 
+            <a href="#top">Top</a>
+        </nav>
+        <a href="https://x.com/fictionpress">
+            <i id="icon-twitter" class="fa-brands fa-twitter"></i>
+        </a>
+    </footer>
+</body>
+</html>
