@@ -11,6 +11,10 @@
         const checkboxBling = id("checkbox-bling");
         const btnSnoopify = id("btn-snoopify");
 
+        // call bling if checkbox is checked somehow
+        bling(textArea, checkboxBling)
+
+        // add listeners
         btnBigger.addEventListener('click', () => {bigger(textArea)});
         checkboxBling.addEventListener('click', () => {bling(textArea, checkboxBling)});
         btnSnoopify.addEventListener('click', () => {snoopify(textArea)})
@@ -24,80 +28,37 @@
     function bigger(text) {
         if (text.style.fontSize != "24pt") { //ensures it only does it once
             text.style.fontSize = "24pt";
-            console.info("made it bigger");
-        }
-    }
-
-    function bling(text, checkbox) {
-        if (checkbox.checked) {
-            text.style.fontWeight = "bold";
-            text.style.textDecoration = "underline";
-            text.style.color = "green";
-            text.animate([
-                {
-                    opacity: 1,
-                },
-                {
-                    opacity: 0,
-                },
-                {
-                    opacity: 1
-                }
-            ],{
-                duration:2000,
-                iterations: Infinity
-            });
-            text.style.fontFamily = "serif";
-            text.style.fontStyle = "italic";
-            text.style.backgroundImage = "url('hundred-dollar-bill.jpg')";
-            text.style.backgroundRepeat = "repeat";
-            console.info("Set to blinged...");
-        } else {
-            text.style.fontWeight = "normal";
-            text.style.textDecoration = "none";
-            text.style.color = "black";
-            text.getAnimations()[0].cancel();
-            text.style.fontFamily = "monospace";
-            text.style.fontStyle = "normal";
-            text.style.backgroundImage = "none";
-            text.style.backgroundRepeat = "none";
-            console.info("Set to normal...");
         }
     }
 
     function snoopify(text) {
+        const sfix = "-izzle";
         var str = text.value.toUpperCase();
         // some code i found on stackoverflow to split a string by line
         // from my understanding it's just regex that checks if there's
-        // a newline or a carriage return
+        // a newline or a carriage return based on different file systems
         // then splits it by that...
         const chunks = str.split(/\r?\n|\r|\n/g);
-        var parts = [];
+        var final = ''; // this should be the final text to put into the thing...
         // just take every word and then insert it into the parts array
         // adding a newline at the end just to keep the structure the same
-        chunks.forEach((section) => {
-            parts = parts.concat(section.split( ));
-            parts.push('\n');
-        }, parts);
-        // pop the last element (it'll be a newline)
-        // so that we don't have problems when adding the '!' later
-        parts.pop();
-        const sfix = "-izzle";
-        parts.forEach((element, index) => {
-            if (!element.endsWith("-izzle")) { // ensures it only does it once
-                // ensure it only replaces the last dot on the string
-                // regex ensures it will only replace those with a .
-                // at the end and ignores the whitespace afterward
-                parts[index] = element.replace(/\.$/, sfix);
-            }
-        });
-        text.value = parts.join(" ") + "!";
+        chunks.forEach((line) => {
+            var parts = line.split(" "); // splits each line by word
+            parts.forEach((element, index) => {
+                if (!element.endsWith("-izzle")) { // ensures it only does it once
+                    // ensure it only replaces the last dot on the string
+                    // regex ensures it will only replace those with a .
+                    // at the end and ignores the whitespace afterward
+                    parts[index] = element.replace(/\.$/, sfix);
+                }
+            });
+            final += parts.join(" ") + '\n';
+        }, sfix);
+        text.value = final.slice(0, -1) + "!";
+    }
+
+    function bling(textArea, checkboxBling){
+        textArea.classList[checkboxBling.checked ? 'add' : 'remove']('bling');
     }
 
 }());
-
-/*
-razzle me dazzle.
-like i swing.
-in me castle.
-*/

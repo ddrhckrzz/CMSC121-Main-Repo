@@ -30,3 +30,32 @@ textarea {
 button {
 	display: block;
 }
+
+.bling {
+	animation: blink 2.5s linear infinite;
+	background-image: url("hundred-dollar-bill.jpg");
+	background-size: contain;
+	color: green;
+	font-family: serif;
+	font-weight: bold;
+	text-decoration: underline;
+	font-style: italic;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

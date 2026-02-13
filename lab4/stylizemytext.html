@@ -1,26 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Stylize My Text!</title>
-		<meta charset="UTF-8">
-		<link href="stylizemytext.css" rel="stylesheet" type="text/css" />
+		<link href="stylizemytext.css" rel="stylesheet" type="text/css">
 
 		<!-- link to your script file here -->
-		<script src="stylizemytext.js"></script>
+		<script src="stylizemytext.js" type="module"></script>
 	</head>
 
 	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
 		<h1>Stylize My Text</h1>
 		
 		<fieldset>
 			<legend>Text</legend>
-			<textarea name="" id="text-area" rows="4" cols="30"></textarea>
+			<textarea name="input-text" id="text-area" rows="4" cols="30"></textarea>
 		</fieldset>
 
 		<fieldset>
 			<legend>Style It</legend>
 			<button id="btn-bigger">Make it bigger!</button>
-			<input type="checkbox" name="" id="checkbox-bling"/> <label for="option1">Bling</label>
+			<input type="checkbox" name="toggle" id="checkbox-bling">
+			<label for="checkbox-bling">Bling</label>
 			<button id="btn-snoopify">Snoopify!</button>
 		</fieldset>
 	</body>
