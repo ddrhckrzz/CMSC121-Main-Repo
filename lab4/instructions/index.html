@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+		<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+		<script type="text/javascript" src="../labs.js"></script>
+		
+		<style type="text/css">
+			#netterms {
+				line-height: 2em;
+			}
+			
+			#netterms li {
+				display: inline;
+				padding: 0.2em 0.5em;
+				border-left: thin dotted gray;
+				border-right: thin dotted gray;
+			}
+			
+			.sectionheader {
+				margin-top: 14em;
+			}
+		</style>
+
+		<style type="text/css" media="print">
+			h2 {
+				margin-top: 1em !important;
+				padding-top: 0em !important;
+			}
+		</style>
+
+		<title>CMSC 121 Internet Technologies Activity 4 (JavaScript for Interactive UIs)</title>
+	</head>
+
+	<body>
+		<h1>
+			CMSC 121 Internet Technologies <br />
+			Activity 4: JavasScript for Interactive UI
+		</h1>
+		<h1>
+			From: <br />
+			Web Programming Step by Step <br />
+			Lab 4: JavaScript for Interactive User Interfaces
+		</h1>
+
+		<p class="credit">
+			original lab idea and code by Victoria Kirst and Kevin Wallace; revised by Brian Le and Marty Stepp; revised to work with modern browsers by John Ultra
+		</p>
+		
+		<p class="credit">
+		<b>Credits and Acknowledgements </b> This laboratory activity was taken from Companion Website for <cite>Web Programming
+		Step by Step</cite> by Marty Stepp, Jessica Miller, and Victoria Kirst. These materials are used in this
+		course for educational purposes only. If you are keen, the complete list of materials can be found in the following
+		URL: <a href="https://www.webstepbook.com/">https://www.webstepbook.com/</a>. The copyright to these materials
+		are owned by their respective owners. 
+		</p>
+
+		<p>
+			The purpose of this lab is to practice using basic JavaScript and UI controls to create interactive web pages.
+		</p>
+
+
+		<h2>Activity 4: Stylize My Text!</h2>
+
+		<p>
+			The theme of this lab is that we'll be writing a page where the user can type some text into a box, and by clicking on various UI controls, we'll allow the user to &quot;style&quot; the text by giving it some funny styling.  You are given a skeleton HTML file named <a href="stylizemytext.html"><samp>stylizemytext.html</samp></a> (right-click and select <q>Save Link As...</q>) that contains a basic HTML shell and page header.  This skeleton already links to a CSS file named <samp>stylizemytext.css</samp> that defines all the simple styles you should need for this lab.  You do not have to edit this provided stylesheet or write any CSS code today.  Please don't remove the links to the provided CSS from the page.
+		</p>
+			
+		<p>
+			You will write a JavaScript file called <code>stylizemytext.js</code> that will manipulate text in various ways throughout the following exercises.
+		</p>
+
+		<p>
+		</p>
+
+
+		<h2>Activity 3 Resources</h2>
+		<ul>
+
+			<li>
+						Use the <b> Developer Tools </b> that are built-in in modern web browsers in debugging your work. For more info, visit the following links:
+						<a href="https://developers.google.com/web/tools/chrome-devtools"> Google Chrome</a>, and
+						<a href="https://developer.mozilla.org/en-US/docs/Tools">Mozilla Firefox</a>.
+			</li>
+
+			<!--
+			<li>
+				<a class="popup" href="solution/solution.html">Runnable solution</a> to this lab (so you can see how your page is supposed to look and work)
+			</li>-->
+		</ul>
+
+		
+		<h2>Exercises for Today:</h2>
+		
+		<ol>
+			<li><a href="#ex1">Create UI Elements</a></li>
+			<li><a href="#ex2">Bigger Text Button</a></li>
+			<li><a href="#ex3">Bling Checkbox</a></li>
+			<li><a href="#ex4">Snoopify</a></li>
+			<li><a href="#ex5">Even More Gangsta</a></li>
+		</ol>
+
+
+		<h2 id="ex1">Exercise 1: Create UI Elements (roughly 15 minutes)</h2>
+
+		<p>
+			The first task is to expand <samp>stylizemytext.html</samp> by adding UI controls.  Add HTML code for the following:
+		</p>
+		
+		<ul>
+			<li>
+				Add a field for users to enter <em>large</em> (multi-line) amounts of text. It should be 4 rows by 30 columns in size.  Wrap it in a bordered field set box with the label &quot;Text&quot;.
+			</li>
+			<li>
+				Add a second bordered field set box labeled &quot;Style It&quot; that contains the following controls:
+				<ul>
+					<li>A button labeled &quot;Make it bigger!&quot;</li>
+					<li>A checkbox labeled &quot;Bling&quot;</li>
+					<li>A button labeled &quot;Snoopify&quot;</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<p>
+			You should roughly match the output below (between, but not including, the thick black lines).  (Don't worry too much about getting the exact output; the important thing is to have the proper UI elements!)
+		</p>
+
+		
+		<div class="expectedoutput">
+			<img src="images/output1.png" alt="expected output" />
+		</div>
+
+		
+		<h2 id="ex2">Exercise 2: Make it bigger! Button (roughly 10 minutes)</h2>
+ 
+		<p>
+			Now you're going to create a basic JavaScript file so that when the user clicks &quot;Make it bigger!&quot;, the text in the main text area will get larger.  Do the following:
+		</p>
+		
+		<ol>
+			<li>
+				<p>
+					Create a new file and saving it as <samp>stylizemytext.js</samp>.  Link your XHTML page to this script file.  You may want to make sure that this is working by simply putting an <code>alert</code> in your .js file and making sure that the alert pops up when you refresh the page.  For example, the following could be the entire initial contents of the file:
+				</p>
+				
+<pre>
+alert(&quot;Hello World!&quot;);
+</pre>
+			</li>
+
+			<li>
+				Add JavaScript code (and any necessary modifications to the XHTML) so that when the user clicks the &quot;Make it bigger!&quot; button, the size of the text in the main text area changes to <strong>24pt</strong>.
+
+				<p>
+					<em>Hint:</em> Remember that CSS properties can be set individually by using the <code>style</code> property of a DOM element e.g., <code> someElement.style.color = "red" </code>, or by adding a class containing the desired style using an element's <code>classList</code> property.
+				</p>
+
+			</li>
+		</ol>
+
+		<p>
+			Clicking the button should cause an appearance like the one below.
+		</p>
+
+		
+		<div class="expectedoutput">
+			<img src="images/output2.png" alt="expected output" />
+		</div>
+		
+		
+		
+		<h2 id="ex3">Exercise 3: Bling Checkbox (roughly 15 minutes)</h2>
+		
+		<p>
+			You are now going to add an event handler so that when the user checks the &quot;Bling&quot; checkbox, the main text area will have some styles applied to it.
+		</p>
+		
+		<ol>
+			<li>
+				Add JavaScript code (and any necessary modifications to the XHTML) so that when the user checks the box, the text in the text area becomes bold.  You can test whether a given checkbox or radio button is checked by examining the <code>checked</code> property of the box's DOM object.  When the box is unchecked, the style should go back to normal.
+			</li>
+			
+			<li>
+				Once you get the bold aspect to work, add the following additional effects to also take place when the Bling checkbox is checked:
+				
+				<ul>
+					<li>underline the text (this is the CSS <code>text-decoration</code> property)</li>
+					<li>change its color to <code>green</code></li>
+					<li>make it blink (this is the CSS <code>animation</code> property)</li>
+					<li>any two other styles of your choice</li>
+				</ul>
+			</li>
+		</ol>
+
+		<p>
+			The best design for this feature would be to place the above style rules into a class in your .css file and apply that class to the element when the box is checked.  After checking the box, your text should look something like this:
+		</p>
+		
+		<div class="expectedoutput">
+			<img src="images/output3.png" alt="expected output" />
+		</div>
+
+		
+				
+		<h2 id="ex4">Exercise 4: Snoopify (roughly 10 minutes)</h2>
+ 		
+		<p>
+			Now we will transforming or &quot;Snoopifying&quot; the actual content of the text.
+		</p>
+		
+		<ol>
+			<li>
+				Write a new button named Snoopify that, when clicked, modifies the text in the text area by capitalizing it and adding an exclamation point to the end of it.
+			</li>
+			
+			<li>
+				Modify your Snoopify button so that it also adds a suffix of <code>&quot;-izzle&quot;</code> to the last word of each sentence.  (A sentence being a string of text that ends in a period character, <code>&quot;.&quot;</code> .)  Do this using the String/array methods <code>split</code> and <code>join</code>.  For example, if you wanted to change all spaces with underscores in a string, you could write:
+				
+				<pre>
+var str = &quot;How are you?&quot;
+var parts = str.split(&quot; &quot;);  // [&quot;How&quot;, &quot;are&quot;, &quot;you?&quot;]
+str = parts.join(&quot;_&quot;);       // &quot;How_are_you?&quot;
+</pre>
+			</li>
+		</ol>
+
+		<p>
+			After finishing this exercise and clicking the button, your text should look something like this:
+		</p>
+		
+		<hr class="outputseparator" />
+		<p>
+			<img src="images/output4.png" alt="expected output" />
+		</p>
+		<hr class="outputseparator" />
+		
+		
+		<h2 id="ex6">Exercise 5: </h2>
+		
+		<p>
+			If you finish all of the above, add the following to your page:
+		</p>
+
+		<ol>
+			<li>
+				When the &quot;Bling&quot; checkbox is checked, also set the textarea to have a background image of: <br />
+			
+				<code><a href="hundred-dollar-bill.jpg">hundred-dollar-bill.jpg</a></code>	
+			</li>
+			
+
+		</ol>
+
+
+		<div class="w3c">
+			<a href="http://validator.w3.org/check/referer"><img src="../w3c-xhtml11.png" alt="Valid XHTML 1.1" /></a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="../w3c-css.png" alt="Valid CSS!" /></a>
+		</div>
+
+	</body>
+</html>
+
