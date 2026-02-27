@@ -34,7 +34,7 @@ function buildDirectoryTree($dir, $baseDir = '')
     foreach ($folders as $folderName => $relPath) {
         $subTree = buildDirectoryTree($dir . '/' . $folderName, $relPath);
         if ($subTree !== '') {
-            $html .= "<li><div class='folder-toggle' data-path='" . htmlspecialchars($relPath) . "' onclick='toggleFolder(this)'>";
+            $html .= "<li><div class='folder-toggle' data-path='" . htmlspecialchars($relPath) . "'>";
             $html .= "<span class='caret caret-down'>▶</span><span class='icon'>📁</span><span class='folder-name'>" . htmlspecialchars($folderName) . "</span>";
             $html .= "</div>\n" . $subTree . "</li>\n";
         }
