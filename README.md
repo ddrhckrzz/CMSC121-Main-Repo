@@ -7,8 +7,8 @@ the entire LAMP stack, but without the A, since we're using Caddy instead.
 
 ## Guide
 
-If you wish to use this template, download `.envrc` and `devenv.nix`
-then, in the same directory, run this command:
+If you wish to use this template, download `.envrc`, `devenv.yaml`
+and `devenv.nix` then, in the same directory, run this command:
 
 ```bash
 direnv allow
