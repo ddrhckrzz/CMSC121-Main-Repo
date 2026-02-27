@@ -6,14 +6,14 @@ echo "<h1>LAMP Stack Status</h1>";
 
 echo "<h3> PHP is working!</h3>";
 echo "Running PHP version: " . phpversion() . "<br>";
-$mysqli = new mysqli("localhost", "root", "", "", 0, $socket_path);
+$mysqli = new mysqli("127.0.0.1", "root", "", "lamp_dev", 3306);
 
 if ($mysqli->connect_error) {
-    echo "<h3> Database Connection Failed</h3>";
+    echo "<h3>Database Connection Failed</h3>";
     echo "Error: " . $mysqli->connect_error;
 } else {
-    echo "<h3> Database Connected Successfully!</h3>";
-    echo "Connected to MariaDB via Socket: " . $socket_path;
+    echo "<h3>Database Connected Successfully!</h3>";
+    echo "Connected to MariaDB via 127.0.0.1 on port 3306";
 }
 
 echo "<hr>";

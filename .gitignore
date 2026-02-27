@@ -101,3 +101,5 @@ fabric.properties
 ### SPECIFIC PROJECT FOLDER STUFF TO IGNORE ###
 .data/
 .direnv/
+.devenv/
+solutions/
