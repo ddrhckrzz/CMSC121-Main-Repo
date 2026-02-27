@@ -12,7 +12,16 @@
   const MAX_BUGS = 20;
   let MIN_BUGS = 5;
   const SIZES =['small', 'medium', 'large'];
-  let totalSpawned = 0;
+  
+  // Keep track of total bugs spawned to cap at MAX_BUGS
+  let totalSpawned = MIN_BUGS; // Starts with 5 bugs spawned
+  let bugsWhacked = 0;
+  let score = 0;
+
+  // Timer and Game stuffs
+  let timerId = null;
+  let timeLeft = 30;
+  let gameOver = false;
 
   /**
    * Sets up event listeners for the start button and the bugs.
@@ -21,7 +30,38 @@
     let container = id('bug-container');
     clear(container);
 
+    // Initialize timer text, but don't start the countdown yet
+    id("timer").textContent = timeLeft;
+
     populate(container);
+  }
+
+  /**
+   * Handles the 1-second countdown for the game timer.
+   */
+  function countdown() {
+    timeLeft--;
+    id("timer").textContent = timeLeft;
+    
+    // Loss condition: Time runs out before all bugs are whacked
+    if (timeLeft <= 0) {
+      endGame(false);
+    }
+  }
+
+  /**
+   * Ends the game, stops the timer, and displays the appropriate status message.
+   * @param {boolean} isWin - true if the player won, false if timer ran out.
+   */
+  function endGame(isWin) {
+    clearInterval(timerId);
+    gameOver = true;
+    
+    if (isWin) {
+      qs("#game p").textContent = "You Win!";
+    } else {
+      qs("#game p").textContent = "Game Over.";
+    }
   }
 
   function clear(container) {
@@ -37,7 +77,8 @@
       bug.id=`bug-${i}`; // used to access each cell later
     }
 
-    bindListeners(qsa("#bug-container img"));
+    // simpler event listener
+    id("bug-container").addEventListener("click", whackBug);
 
     const bugs =[...qsa("#bug-container img.empty")];
     shuffle(bugs);
@@ -46,15 +87,8 @@
     bugs.slice(0, MIN_BUGS).forEach(bug => {
       bug.src = 'bug.png';
       bug.classList.replace('empty', SIZES[getRandomInt(0, 3)]);
-      totalSpawned++;
     });
 
-  }
-
-  function bindListeners(bugs) {
-    for(let i = 0; i < bugs.length; i++) {
-      bugs[i].addEventListener("click", whackBug);
-    }
   }
 
   /**
@@ -62,29 +96,54 @@
    * After 250ms, resets it to an empty placeholder in the DOM to preserve layout.
    */
   function whackBug(event) {
-    const bug = event.currentTarget;
+    // ignorei nteraction if game over
+    if (gameOver) return;
+
+    // get exact element that was clicked inside the container
+    const bug = event.target;
     
-    // Check to ensure we are clicking an active bug, not an empty space or already whacked bug
+    // only run logic if an image was clicked
+    if (bug.tagName !== "IMG") return;
+
+    // ensure we are clicking an active bug, not an empty space or already whacked bug
     if(!bug.classList.contains("whacked") && !bug.classList.contains("empty")) {
+      
+      // start on first whack
+      if (!timerId) {
+        timerId = setInterval(countdown, 1000);
+      }
+
       bug.classList.add("whacked");
       bug.src = "bug-whacked.png";
       
-      let score = id("score");
-      let total = parseInt(score.textContent) + 1;
-      score.textContent = total;
+      bugsWhacked++;
       
-      if (total === MAX_BUGS) {
-        qs("#game p").textContent = "All bugs have been whacked";
+      let points = 1;
+      if (bug.classList.contains("small")) {
+        points = 3;
+      } else if (bug.classList.contains("medium")) {
+        points = 2;
+      } else if (bug.classList.contains("large")) {
+        points = 1;
       }
 
-      // Reset: After a 250ms delay, revert the bug to an empty placeholder to maintain layout
+      score += points;
+      id("score").textContent = score;
+      id("totalbugs").textContent = bugsWhacked;
+      
+      // Win condition: Player successfully whacks the 20th bug
+      if (bugsWhacked === MAX_BUGS) {
+        endGame(true);
+      }
+
+      // 250ms delay then replace bug img source with empty again
       setTimeout(() => {
         bug.classList.remove("whacked", "small", "medium", "large");
         bug.classList.add("empty");
         bug.src = "empty.png";
       }, 250);
 
-      // Spawn: Spawn a new bug immediately if we haven't reached the 20 limit yet
+      // spawn if not max bug
       if (totalSpawned < MAX_BUGS) {
         spawnNewBug();
       }
