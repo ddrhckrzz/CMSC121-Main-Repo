@@ -1,0 +1,185 @@
+body {
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #181825;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-top: 0;
+    color: #cba6f7;
+    border-bottom: 1px solid #45475a;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.live-indicator {
+    font-size: 0.4em;
+    padding: 3px 8px;
+    background: #313244;
+    border-radius: 10px;
+    color: #a6e3a1;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 5px #a6e3a1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+ul.tree,
+ul.tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.tree ul {
+    padding-left: 1.5em;
+}
+
+ul.tree li {
+    position: relative;
+    padding-left: 1.5em;
+    margin: 0;
+    line-height: 2em;
+}
+
+ul.tree ul li::before,
+ul.tree ul li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+ul.tree ul li::before {
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #585b70;
+}
+
+ul.tree ul li::after {
+    top: 1em;
+    width: 1.2em;
+    border-top: 1px solid #585b70;
+}
+
+ul.tree ul li:last-child::before {
+    bottom: auto;
+    height: 1em;
+}
+
+.icon {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.folder-name {
+    font-weight: bold;
+    color: #89b4fa;
+}
+
+a {
+    text-decoration: none;
+    color: #a6e3a1;
+    transition: color 0.1s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #94e2d5;
+}
+
+.folder-toggle {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.folder-toggle:hover .folder-name {
+    color: #b4befe;
+}
+
+.caret {
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+    color: #585b70;
+    font-size: 0.8em;
+    margin-right: 5px;
+    transition: transform 0.2s;
+}
+
+.caret-down {
+    transform: rotate(90deg);
+    color: #89b4fa;
+}
+
+.collapsed {
+    display: none !important;
+}
+
+.diagnostics-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(24, 24, 37, 0.95);
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    font-size: 0.85em;
+    z-index: 1000;
+}
+
+.diagnostics-panel h3 {
+    margin: 0 0 10px 0;
+    color: #f38ba8;
+    font-size: 1.1em;
+    border-bottom: 1px solid #45475a;
+    padding-bottom: 5px;
+}
+
+.diag-row {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.diag-label {
+    color: #a6adc8;
+    font-weight: bold;
+}
+
+.status-good {
+    color: #a6e3a1;
+    font-weight: bold;
+}
+
+.status-bad {
+    color: #f38ba8;
+    font-weight: bold;
+}
