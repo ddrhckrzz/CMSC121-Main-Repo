@@ -4,6 +4,10 @@
   # PHP Setup
   languages.php.enable = true;
   languages.php.extensions = [ "mysqli" "pdo_mysql" ];
+  # Append widget to every single script.
+  languages.php.ini = ''
+    auto_append_file = ${config.devenv.root}/widget.php
+  '';
   languages.php.fpm.pools.web.settings = {
     "pm" = "dynamic";
     "pm.max_children" = 5;

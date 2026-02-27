@@ -1,9 +1,44 @@
 <?php
-// Tell the browser to expect machine-readable JSON, not an HTML web page
 header('Content-Type: application/json');
 
-function buildDirectoryTree($dir, $baseDir = '')
-{
+/**
+ * Reads the .indexignore file and returns an array of patterns
+ */
+function getExclusionPatterns($ignoreFilePath) {
+    if (!file_exists($ignoreFilePath)) return [];
+    
+    // Read the file into an array, ignoring empty lines and newlines
+    $lines = file($ignoreFilePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $patterns = [];
+    
+    foreach ($lines as $line) {
+        $line = trim($line);
+        // Skip comments (lines starting with #)
+        if ($line !== '' && strpos($line, '#') !== 0) {
+            $patterns[] = $line;
+        }
+    }
+    return $patterns;
+}
+
+/**
+ * Checks if a file or folder matches any of the ignore patterns
+ */
+function isExcluded($itemName, $relativePath, $patterns) {
+    // We always skip the current and parent directory pointers
+    if ($itemName === '.' || $itemName === '..') return true;
+    
+    foreach ($patterns as $pattern) {
+        // fnmatch checks against shell wildcard patterns (like *.php)
+        // We check both the exact filename and the relative path (e.g., "test/secret.php")
+        if (fnmatch($pattern, $itemName) || fnmatch($pattern, $relativePath)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function buildDirectoryTree($dir, $baseDir = '', $ignorePatterns = []) {
     $html = '';
     $items = @scandir($dir);
     if (!$items) return '';
@@ -12,28 +47,33 @@ function buildDirectoryTree($dir, $baseDir = '')
     $files = [];
 
     foreach ($items as $item) {
-        if (strpos($item, '.') === 0) continue;
         $path = $dir . '/' . $item;
         $relativePath = $baseDir === '' ? $item : $baseDir . '/' . $item;
+
+        // --- NEW: Check our ignore list ---
+        if (isExcluded($item, $relativePath, $ignorePatterns)) {
+            continue; 
+        }
 
         if (is_dir($path)) {
             $folders[$item] = $relativePath;
         } else {
             $ext = strtolower(pathinfo($item, PATHINFO_EXTENSION));
+            // You can still restrict to specific extensions here if you want, 
+            // or remove this if statement to list ALL non-ignored files.
             if (in_array($ext, ['php', 'html'])) {
-                if ($relativePath === 'index.php' || $relativePath === 'api.php') continue;
                 $files[$item] = $relativePath;
             }
         }
     }
 
-    if (empty($folders) && empty($files)) return '';
+    if (empty($folders) && empty($files)) return ''; 
 
     $html .= "<ul>\n";
     ksort($folders);
     foreach ($folders as $folderName => $relPath) {
-        $subTree = buildDirectoryTree($dir . '/' . $folderName, $relPath);
-        if ($subTree !== '') {
+        $subTree = buildDirectoryTree($dir . '/' . $folderName, $relPath, $ignorePatterns);
+        if ($subTree !== '') { 
             $html .= "<li><div class='folder-toggle' data-path='" . htmlspecialchars($relPath) . "'>";
             $html .= "<span class='caret caret-down'>▶</span><span class='icon'>📁</span><span class='folder-name'>" . htmlspecialchars($folderName) . "</span>";
             $html .= "</div>\n" . $subTree . "</li>\n";
@@ -51,11 +91,16 @@ function buildDirectoryTree($dir, $baseDir = '')
     return $html;
 }
 
-$treeHtml = buildDirectoryTree(__DIR__);
+// 1. Load the rules from the text file
+$ignorePatterns = getExclusionPatterns(__DIR__ . '/.indexignore');
+
+// 2. Pass the rules into our recursive scanner
+$treeHtml = buildDirectoryTree(__DIR__, '', $ignorePatterns);
+
 if ($treeHtml !== '') {
     $treeHtml = preg_replace('/<ul>/', '<ul class="tree">', $treeHtml, 1);
 } else {
-    $treeHtml = "<p class='empty-msg'>No PHP or HTML files found.</p>";
+    $treeHtml = "<p class='empty-msg'>No files found to display.</p>";
 }
 
 // Check Database Status
@@ -70,7 +115,6 @@ if (!$mysqli->connect_error) {
     $mysqli->close();
 }
 
-// Package everything into an associative array and serialize it to JSON
 $response = [
     'tree' => $treeHtml,
     'php_version' => phpversion(),
@@ -79,3 +123,4 @@ $response = [
 ];
 
 echo json_encode($response);
+exit;
