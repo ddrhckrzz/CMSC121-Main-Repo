@@ -11,7 +11,8 @@
 
   const MAX_BUGS = 20;
   let MIN_BUGS = 5;
-  const SIZES = ['small', 'medium', 'large']
+  const SIZES =['small', 'medium', 'large'];
+  let totalSpawned = 0;
 
   /**
    * Sets up event listeners for the start button and the bugs.
@@ -21,7 +22,6 @@
     clear(container);
 
     populate(container);
-
   }
 
   function clear(container) {
@@ -39,13 +39,14 @@
 
     bindListeners(qsa("#bug-container img"));
 
-    const bugs = [...qsa("#bug-container img.empty")];
+    const bugs =[...qsa("#bug-container img.empty")];
     shuffle(bugs);
     
     // after shuffling, get the first 5 bugs and make them visible.
     bugs.slice(0, MIN_BUGS).forEach(bug => {
       bug.src = 'bug.png';
       bug.classList.replace('empty', SIZES[getRandomInt(0, 3)]);
+      totalSpawned++;
     });
 
   }
@@ -57,19 +58,50 @@
   }
 
   /**
-   * whacks the clicked bug and increments the score. The bug cannot be whacked again afterwards.
+   * Whacks the clicked bug and increments the score. The bug cannot be whacked again afterwards.
+   * After 250ms, resets it to an empty placeholder in the DOM to preserve layout.
    */
   function whackBug(event) {
-    if(!event.currentTarget.classList.contains("whacked")) {
-      event.currentTarget.classList.add("whacked");
-      event.currentTarget.src = "bug-whacked.png";
+    const bug = event.currentTarget;
+    
+    // Check to ensure we are clicking an active bug, not an empty space or already whacked bug
+    if(!bug.classList.contains("whacked") && !bug.classList.contains("empty")) {
+      bug.classList.add("whacked");
+      bug.src = "bug-whacked.png";
+      
       let score = id("score");
       let total = parseInt(score.textContent) + 1;
-      // Need to convert the string content into a number.
       score.textContent = total;
-      if (total === qsa("#bug-container img").length) {
+      
+      if (total === MAX_BUGS) {
         qs("#game p").textContent = "All bugs have been whacked";
       }
+
+      // Reset: After a 250ms delay, revert the bug to an empty placeholder to maintain layout
+      setTimeout(() => {
+        bug.classList.remove("whacked", "small", "medium", "large");
+        bug.classList.add("empty");
+        bug.src = "empty.png";
+      }, 250);
+
+      // Spawn: Spawn a new bug immediately if we haven't reached the 20 limit yet
+      if (totalSpawned < MAX_BUGS) {
+        spawnNewBug();
+      }
+    }
+  }
+
+  /**
+   * Spawns a new bug by transforming an existing empty cell, assigning it 
+   * a randomized size and ensuring it has a random position in the layout.
+   */
+  function spawnNewBug() {
+    const emptyBugs = qsa("#bug-container img.empty");
+    if (emptyBugs.length > 0) {
+      const randomEmpty = emptyBugs[getRandomInt(0, emptyBugs.length)];
+      randomEmpty.src = 'bug.png';
+      randomEmpty.classList.replace('empty', SIZES[getRandomInt(0, 3)]);
+      totalSpawned++;
     }
   }
 
@@ -115,7 +147,7 @@
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
     	const j = Math.floor(Math.random() * (i + 1));
-    	[arr[i], arr[j]] = [arr[j], arr[i]];
+      [arr[i], arr[j]] = [arr[j], arr[i]];
   	}
   	return arr;
   }
